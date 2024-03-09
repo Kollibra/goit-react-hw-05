@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import SearchBar from '../../components/SearchBar/SearchBar';
-import { getFilmsByQuery } from '../../components/API/API.js';
+import SearchBar from '../../components/SearchBar/SearchBar.jsx';
+import { getFilmsByQuery } from '../../components/API/API.jsx';
 import MovieList from '../../components/MovieList/MovieList.jsx';
-import Loader from '../../components/Loader/Loader';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import Loader from '../../components/Loader/Loader.jsx';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage.jsx';
 import { useSearchParams } from 'react-router-dom';
 
 const MoviesPage = () => {
