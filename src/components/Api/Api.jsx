@@ -1,35 +1,48 @@
-import axios from 'axios';
+import axios from "axios";
 
-const API_KEY =
-  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNjQ2OGFlZmM0MTJhNWIxOTBhYTc2NThlNmU0N2NjYyIsInN1YiI6IjYzM2RkNGFmNDJmMTlmMDA4MTk3MWJmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TCclO1jUZGl1Zv7PUb9KwE7C6gZiJI7nUcwv1qP8Sn0';
-axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
-axios.defaults.headers.common['Authorization'] = `Bearer ${API_KEY}`;
+const API_KEY = "14442e634525508afa56f4d2f54c1414";
+const BASE_URL = "https://api.themoviedb.org/3";
 
-export const getTrendMovies = async () => {
-  const response = await axios.get('trending/movie/day');
-  return response.data.results;
+export const fetchTrendDay = async () => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&language=uk-UA&per_page=10`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const getFilmsByQuery = async query => {
-  const response = await axios.get('search/movie', {
-    params: {
-      query: query,
-    },
-  });
-  return response.data.results;
+export const fetchByID = async (id) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=uk-UA`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const getMoviesId = async movieId => {
-  const response = await axios.get(`movie/${movieId}`);
-  return response.data;
+export const fetchInfo = async (id, select) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/movie/${id}/${select}?api_key=${API_KEY}&language=en-US`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const getMoviesCast = async movieId => {
-  const response = await axios.get(`/movie/${movieId}/credits`);
-  return response.data;
-};
-
-export const getMoviesReviews = async movieId => {
-  const response = await axios.get(`/movie/${movieId}/reviews`);
-  return response.data.results;
+export const fetchByQuery = async (query) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/search/movie?query=${query}&api_key=${API_KEY}&language=uk-UA&include_adult=false&page=1`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 };
