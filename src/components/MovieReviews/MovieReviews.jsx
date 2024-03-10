@@ -42,7 +42,7 @@ export default function Reviews() {
           </ul>
         </div>
       )}
-      {!loading && !error && !reviews && (
+      {!loading && !error && reviews.length === 0 && (
         <p>Sorry, but now we haven`t reviews for this movie yet </p>
       )}
     </>
