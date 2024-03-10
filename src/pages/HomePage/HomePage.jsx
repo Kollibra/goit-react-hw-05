@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Loader from '../../components/Loader/Loader.jsx';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import { getTrendMovies } from '../../components/API/API.jsx';
+import { getTrendMovies } from '../../components/API/API.js';
 import MovieList from '../../components/MovieList/MovieList';
 
 const HomePage = () => {
