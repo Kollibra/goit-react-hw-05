@@ -6,7 +6,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
 
 export default function Reviews() {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState(null);
+  const [reviews, setReviews] = useState ([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -31,29 +31,10 @@ export default function Reviews() {
       {loading && <Loader />}
       {error && <ErrorMessage />}
 
-      {reviews.length === 0 ? (
-        <p> We don`t have any reviews for this movie</p>
-      ) : (
-        <ul>
-          {reviews.map(review => (
-            <li key={review.id}>
-              <h2>Author: {review.author}</h2>
-              <p>{review.content}</p>
-            </li>
-          ))}
-        </ul>
-      )}
+     
 
 
-
-
-
-
-
-
-
-
-      {/* {!loading && !error && reviews && reviews.length > 0 && (
+      { reviews && reviews.length > 0 && (
         <div>
           <ul>
             {reviews.map(review => (
@@ -65,9 +46,9 @@ export default function Reviews() {
           </ul>
         </div>
       )}
-      {!loading && !error && reviews.length === 0 && (
+      {reviews.length === 0 && (
         <p>Sorry, but now we haven`t reviews for this movie yet </p>
-      )} */}
+      )}
     </>
   );
 }
