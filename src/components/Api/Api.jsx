@@ -1,48 +1,35 @@
-import axios from "axios";
+// import { useState } from 'react';
+import { lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Loader from './Loader/Loader';
+import Navigation from './Navigation/Navigation';
 
-const API_KEY = "14442e634525508afa56f4d2f54c1414";
-const BASE_URL = "https://api.themoviedb.org/3";
+// import HomePage from '../pages/HomePage/HomePage.jsx';
 
-export const fetchTrendDay = async () => {
-  try {
-    const response = await axios.get(
-      `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&language=uk-UA&per_page=10`
-    );
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const MoviesPage = lazy(() => import('../pages/MoviesPage/MoviesPage'));
+const MovieDetailsPage = lazy(() => import('../pages/MovieDetailsPage/MovieDetailsPage'));
+const MovieCast = lazy(() => import('./MovieCast/MovieCast'));
+const MovieReviews = lazy(() => import('./MovieReviews/MovieReviews'));
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
 
-export const fetchByID = async (id) => {
-  try {
-    const response = await axios.get(
-      `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=uk-UA`
-    );
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
+function App() {
+  return (
+    <div>
+      <Navigation />
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movies" element={<MoviesPage />} />
+          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+            <Route path="cast" element={<MovieCast />} />
+            <Route path="reviews" element={<MovieReviews />} />
+          </Route>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
+    </div>
+  );
+}
 
-export const fetchInfo = async (id, select) => {
-  try {
-    const response = await axios.get(
-      `${BASE_URL}/movie/${id}/${select}?api_key=${API_KEY}&language=en-US`
-    );
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const fetchByQuery = async (query) => {
-  try {
-    const response = await axios.get(
-      `${BASE_URL}/search/movie?query=${query}&api_key=${API_KEY}&language=uk-UA&include_adult=false&page=1`
-    );
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-};
+export default App;
