@@ -1,35 +1,35 @@
-// import { useState } from 'react';
-import { lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Loader from './Loader/Loader';
-import Navigation from './Navigation/Navigation';
+import axios from 'axios';
 
-// import HomePage from '../pages/HomePage/HomePage.jsx';
+const API_KEY =
+  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNjQ2OGFlZmM0MTJhNWIxOTBhYTc2NThlNmU0N2NjYyIsInN1YiI6IjYzM2RkNGFmNDJmMTlmMDA4MTk3MWJmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TCclO1jUZGl1Zv7PUb9KwE7C6gZiJI7nUcwv1qP8Sn0';
+axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
+axios.defaults.headers.common['Authorization'] = `Bearer ${API_KEY}`;
 
-const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
-const MoviesPage = lazy(() => import('../pages/MoviesPage/MoviesPage'));
-const MovieDetailsPage = lazy(() => import('../pages/MovieDetailsPage/MovieDetailsPage'));
-const MovieCast = lazy(() => import('./MovieCast/MovieCast'));
-const MovieReviews = lazy(() => import('./MovieReviews/MovieReviews'));
-const NotFoundPage = lazy(() => import('../pages/NotFoundPage/NotFoundPage'));
+export const getTrendMovies = async () => {
+  const response = await axios.get('trending/movie/day');
+  return response.data.results;
+};
 
-function App() {
-  return (
-    <div>
-      <Navigation />
-      <Suspense fallback={<Loader />}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/movies" element={<MoviesPage />} />
-          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-            <Route path="cast" element={<MovieCast />} />
-            <Route path="reviews" element={<MovieReviews />} />
-          </Route>
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
-    </div>
-  );
-}
+export const getFilmsByQuery = async query => {
+  const response = await axios.get('search/movie', {
+    params: {
+      query: query,
+    },
+  });
+  return response.data.results;
+};
 
-export default App;
+export const getMoviesId = async movieId => {
+  const response = await axios.get(`movie/${movieId}`);
+  return response.data;
+};
+
+export const getMoviesCast = async movieId => {
+  const response = await axios.get(`/movie/${movieId}/credits`);
+  return response.data;
+};
+
+export const getMoviesReviews = async movieId => {
+  const response = await axios.get(`/movie/${movieId}/reviews`);
+  return response.data.results;
+};
