@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar.jsx';
-import { getFilmsByQuery } from '../../components/API/API.jsx';
+import { getFilmsByQuery } from '../../components/API/API.js';
 import MovieList from '../../components/MovieList/MovieList.jsx';
 import Loader from '../../components/Loader/Loader.jsx';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage.jsx';

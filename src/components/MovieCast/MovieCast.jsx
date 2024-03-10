@@ -1,7 +1,7 @@
 import css from './MovieCast.module.css';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMoviesCast } from '../API/API.jsx';
+import { getMoviesCast } from '../API/API.js';
 import MovieCastCard from '../MovieCastCard/MovieCastCard.jsx';
 import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
