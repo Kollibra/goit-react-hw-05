@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_KEY =
-  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNjQ2OGFlZmM0MTJhNWIxOTBhYTc2NThlNmU0N2NjYyIsInN1YiI6IjYzM2RkNGFmNDJmMTlmMDA4MTk3MWJmMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TCclO1jUZGl1Zv7PUb9KwE7C6gZiJI7nUcwv1qP8Sn0';
+  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNWEwMzgxOWQzYTI2MTRlMmU3YWNkM2JhNzA1MjVlNiIsInN1YiI6IjY1ZWNkNDYwZTkzZTk1MDE2MWRmYTNkYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CSB1CuBbaasEgiECRk8mupQNqy54HI_4F1e0mPdUWRs';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3/';
 axios.defaults.headers.common['Authorization'] = `Bearer ${API_KEY}`;
 
