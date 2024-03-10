@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Loader from './Loader/Loader';
 import Navigation from './Navigation/Navigation';
 import './App.css';
-// import HomePage from '../pages/HomePage/HomePage.jsx';
+
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const MoviesPage = lazy(() => import('../pages/MoviesPage/MoviesPage'));
