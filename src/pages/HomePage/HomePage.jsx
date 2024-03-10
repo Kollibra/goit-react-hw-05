@@ -11,19 +11,21 @@ const HomePage = () => {
 
   // const location = useLocation();
 
-  const trendingFilms = async () => {
-    try {
-      setLoading(true);
-      const response = await getTrendMovies();
-      setMovies(response);
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  
   useEffect(() => {
+
+    const trendingFilms = async () => {
+      try {
+        setLoading(true);
+        const response = await getTrendMovies();
+        setMovies(response);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
     trendingFilms();
   }, []);
 
