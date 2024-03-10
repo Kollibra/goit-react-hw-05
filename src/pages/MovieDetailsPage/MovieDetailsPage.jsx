@@ -1,6 +1,6 @@
 import { useParams, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { Suspense, useEffect, useRef, useState } from 'react';
-import { getMoviesId } from '../../components/API/API';
+import { getMoviesId } from '../../components/API/API.jsx';
 import clsx from 'clsx';
 import css from './MovieDetailsPage.module.css';
 import LinkBackBtn from '../../components/LinkBackBtn/LinkBackBtn';
