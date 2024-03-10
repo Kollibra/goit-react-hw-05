@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getMoviesReviews } from '../../components/API/API';
+import { getMoviesReviews } from '../../components/API/API.jsx';
 import Loader from '../Loader/Loader';
 import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
 
